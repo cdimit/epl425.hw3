@@ -8,8 +8,15 @@
         <link rel="shortcut icon" type="image/gif" href="images/rotten.gif">
     </head>
     <body>
+	<?php
+	if (isset($_GET["film"])) {
+		$film = $_GET["film"];
+		$info = file($film."/info.txt", FILE_IGNORE_NEW_LINES);
+	}
+	?>
+
         <div id="banner"><img src="images/banner.png" alt="banner"></div>
-        <h1>TMNT (2007)</h1> 
+        <h1><?= $info[0] ?> (<?=$info[1] ?>) </h1> 
         <div id="overall">
             <div id="Overview">
                 <img src="images/overview.png" alt="overview">
@@ -47,7 +54,7 @@
             <div id="reviews">
                 <div id="reviewsbar">
                    <img id="reviewsbarimg" src="images/rottenbig.png" alt="overview"> 
-                   <div id="rate">33%</div>
+                   <div id="rate"><?= $info[2] ?>%</div>
                 </div>
                 <div class="reviewcol">
                     <div class="reviewquote">
@@ -160,7 +167,7 @@ firmly co-opted by the industry their creators once sought to spoof."
             </div>
             <div id="reviewsbar">
                <img id="reviewsbarimg" src="images/rottenbig.png" alt="overview"> 
-               <div id="rate">33%</div>
+               <div id="rate"><?= $info[2] ?>%</div>
             </div>   
         </div>
         <div id="w3ccheck">
