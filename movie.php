@@ -52,117 +52,39 @@
                    <img id="reviewsbarimg" src="<?= $large ?>" alt="overview"> 
                    <div id="rate"><?= $info[2] ?>%</div>
                 </div>
-                <div class="reviewcol">
+		<div class="reviewcol"> 
+		<?php  $reviewfiles = glob($film."/review*.txt"); 
+			$reviewcount = count($reviewfiles);
+			foreach($reviewfiles as $key => $file){
+				if($key == round($reviewcount/2)){
+		?>
+       		</div>
+                <div class="reviewcol"> 
+		<?php 
+		    }
+		    $review = file($file, FILE_IGNORE_NEW_LINES)
+		?>
                     <div class="reviewquote">
-                        <img class="likeimg" src="images/rotten.gif" alt="rotten">
-                        "Ditching the cheeky, self-aware wink that 
-helped to excuse the concept's inherent corniness, 
-                        the movie attempts to look polished and 'cool,' 
-                        but the been-there animation can't compete with 
-the then-cutting-edge puppetry of the 1990 live-action movie."
+                        <img class="likeimg" src="images/<?=strtolower($review[1])?>.gif" alt="rotten">
+			<?=$review[0]?>
                     </div>
                     <div class="personalquote">
                         <img class="personimg" src="images/critic.gif" alt="critic">
-                        Peter Debruge<br> 
-                        Variety
+                        <?=$review[2]?><br> 
+                        <?=$review[3]?>
                     </div>
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/fresh.gif" alt="fresh">
-                        "TMNT is a fun, action-filled adventure that 
-will satisfy longtime fans and generate a legion of new ones."
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                        Todd Gilchrist<br>  
-                        IGN Movies
-                    </div>
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/rotten.gif" alt="rotten">
-                        "It stinks!"<br><br>
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                        Jay Sherman (unemployed) <br><br>
-                    </div>
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/rotten.gif" alt="rotten">
-                        "The rubber suits are gone and they've been 
-redone with fancy computer technology, but that hasn't stopped them     
-                        from becoming dull."
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                        Joshua Tyler<br>
-                        CinemaBlend.com  
-                    </div>
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/fresh.gif" alt="fresh">
-                        " love how they shot it; used the hand held camera to follow the actors, 
-                        but didn't use fast cuts or incredible shake, so you could actually see what was going on."
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                        Tengfei Sun<br><br>
-                    </div>
-                </div>
-                <div class="reviewcol">
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/rotten.gif" alt="rotten">
-                        "The turtles themselves may look prettier, but 
-are no smarter; torn irreparably from their countercultural roots,
-                        our superheroes on the half shell have been 
-firmly co-opted by the industry their creators once sought to spoof."
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                        Jeannette Catsoulis<br>
-                        New York Times 
-                    </div>
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/rotten.gif" alt="rotten">
-                        "Impersonally animated and arbitrarily plotted, 
-                        the story appears to have been made up as the filmmakers went along."
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                         Ed Gonzalez<br>
-                         Slant Magazine 
-                    </div>
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/fresh.gif" alt="fresh">
-                        "The striking use of image and motion allows each sequence to leave an impression. 
-                        It's an accomplished restart to this franchise."
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                        Mark Palermo<br>
-                        Coast (Halifax, Nova Scotia) 
-                    </div>
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/rotten.gif" alt="rotten">
-                        "The script feels like it was computer generated. 
-                        This mechanical presentation lacks the cheesy charm of the three live action films."
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                        Steve Rhodes<br>
-                        Internet Reviews  
-                    </div>
-                    <div class="reviewquote">
-                        <img class="likeimg" src="images/fresh.gif" alt="fresh">
-                        "They did it the best way they could while keeping it true to the book. "
-                    </div>
-                    <div class="personalquote">
-                        <img class="personimg" src="images/critic.gif" alt="critic">
-                        Tengfei Sun<br><br>
-                    </div>
-                </div>
+		<?php } 
+	 	    if($key == $reviewcount-1){
+		   ?>
+                </div> 
+		<?php 
+		    } ?>
             </div> 
             <div id="bottombar">
                 (1-10) of 8
             </div>
             <div id="reviewsbar">
-               <img id="reviewsbarimg" src="images/rottenbig.png" alt="overview"> 
+               <img id="reviewsbarimg" src="<?= $large ?>" alt="overview"> 
                <div id="rate"><?= $info[2] ?>%</div>
             </div>   
         </div>
