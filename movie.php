@@ -81,7 +81,7 @@
 		    } ?>
             </div> 
             <div id="bottombar">
-                (1-10) of 8
+                (1-<?=$reviewcount?>) of <?=$reviewcount?>
             </div>
             <div id="reviewsbar">
                <img id="reviewsbarimg" src="<?= $large ?>" alt="overview"> 
@@ -92,6 +92,6 @@
             <a href="http://validator.w3.org/check/referer"><img src="images/w3c-html.png" alt="Valid HTML5"></a> <br>
             <a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="images/w3c-css.png" alt="Valid CSS"></a>
 	</div>
-    
+            <div id="banner"><img src="images/banner.png" alt="banner"></div>
 
 </body></html>
