@@ -12,6 +12,11 @@
 	if (isset($_GET["film"])) {
 		$film = $_GET["film"];
 		$info = file($film."/info.txt", FILE_IGNORE_NEW_LINES);
+		if($info[2] >= "60"){
+		    $large = "images/fresh.jpg";
+		}else{
+		    $large = "images/rottenbig.png";
+		}
 	}
 	?>
 
@@ -19,41 +24,32 @@
         <h1><?= $info[0] ?> (<?=$info[1] ?>) </h1> 
         <div id="overall">
             <div id="Overview">
-                <img src="images/overview.png" alt="overview">
+                <img src="<?= $film ?>/overview.png" alt="overview">
                 <dl class="OverViewdl">
-                    <dt>STARRING</dt>
+		    <?php
+		    foreach (file($film."/overview.txt", FILE_IGNORE_NEW_LINES) as $overview) {
+			$over = explode(":", $overview);
+		    ?>
+	            <dt><?= $over[0] ?></dt>
                     <dd>
                         <ul>
-                            <li>Patrick Stewart </li>
-                            <li>Mako</li>
-                            <li>Sarah Michelle Gellar</li>
-                            <li>Kevin Smith</li>
+			    <?php if($over[0]=="STARRING"){
+				$star = implode("<br>", explode(",", $over[1]));
+				}
+				else{ $star = $over[1]; }
+				?>
+                            <li><?=$star ?></li>
                         </ul> 
                     </dd>
-                    <dt>DIRECTOR</dt><dd>Kevin Munroe</dd>
-                    <dt>RATING</dt><dd>PG</dd>
-                    <dt>THEATRICAL RELEASE</dt><dd>Mar 23, 2007</dd>
-                    <dt>MOVIE SYNOPSIS</dt><dd>After the defeat of their old arch nemesis, The Shredder, the Turtles have grown apart as a family.</dd>
-                    <dt>MPAA RATING</dt><dd>PG, for animated action violence, some scary cartoon images and mild language</dd>
-                    <dt>RELEASE COMPANY</dt><dd>Warner Bros.</dd>
-                    <dt>RUNTIME</dt><dd>90 mins</dd>
-                    <dt>RATING</dt><dd>PG</dd>
-                    <dt>GENRE</dt><dd>Action/Adventure, Comedies, Childrens, Martial Arts, Superheroes, Ninjas, Animated Characters</dd>
-                    <dt>BOX OFFICE</dt><dd>$54,132,596</dd>
-                    <dt>LINKS</dt>
-                    <dd>
-                        <ul>
-                            <li><a href="http://www.ninjaturtles.com/">The Official TMNT Site</a></li>
-                            <li><a href="http://www.rottentomatoes.com/m/teenage_mutant_ninja_turtles/">RT Review</a></li>
-                            <li><a href="http://www.rottentomatoes.com/">RT Home</a></li>
-                            <li><a href="http://mumstudents.org/cs472/">CS472</a></li>
-                        </ul>  
-                    </dd>
+			
+		    <?php
+	    	    }
+		    ?>
                 </dl>
             </div>
             <div id="reviews">
                 <div id="reviewsbar">
-                   <img id="reviewsbarimg" src="images/rottenbig.png" alt="overview"> 
+                   <img id="reviewsbarimg" src="<?= $large ?>" alt="overview"> 
                    <div id="rate"><?= $info[2] ?>%</div>
                 </div>
                 <div class="reviewcol">
